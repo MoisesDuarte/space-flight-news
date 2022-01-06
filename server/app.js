@@ -1,15 +1,15 @@
 // ? Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
-const cron = require("node-cron");
+const morgan = require("morgan");
+require("dotenv").config();
 
-// ? Cron Job
-// TODO: Creat CRON to update database at 9 daily hours
+// ? Cron Jobs
 require("./jobs/updater");
 
 // ? Server setup
-require("dotenv").config();
 const app = express();
+app.use(morgan("dev"));
 
 // ? Mongoose Connection
 mongoose
