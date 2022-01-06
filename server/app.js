@@ -2,7 +2,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
-const syncDatabase = require("./scripts/syncDatabase");
 
 // ? Cron Job
 // TODO: Creat CRON to update database at 9 daily hours
@@ -22,9 +21,13 @@ mongoose
   });
 
 // ? Routing
+const articleRoutes = require("./api/routes/ArticleRoutes");
+
 app.get("/", (req, res) => {
   res.status(200).json("Fullstack Challenge 2021 🏅 - Space Flight News");
 });
+
+app.use("/articles", articleRoutes);
 
 // ? Server listening
 const PORT = process.env.PORT || 3000;
