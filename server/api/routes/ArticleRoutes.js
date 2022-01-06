@@ -5,6 +5,6 @@ const articleController = require("../controllers/ArticleController");
 
 // * API Routes
 router.get("/", articleController.getAllArticles);
-router.get("/:articleId", articleController.getArticleById);
+router.get("/:id", articleController.getArticleById);
 
 module.exports = router;

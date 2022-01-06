@@ -23,7 +23,7 @@ async function getAllArticles(req, res) {
       Article.countDocuments().exec(function (err, count) {
         res.status(200).json({
           articles,
-          page,
+          page: parseInt(page),
           pages: count / limit,
         });
       });
@@ -32,7 +32,7 @@ async function getAllArticles(req, res) {
 
 async function getArticleById(req, res) {
   try {
-    const id = req.params.articleId;
+    const id = req.params.id;
     const result = await Article.findById(id);
     res.status(200).json(result);
   } catch (err) {
