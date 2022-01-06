@@ -59,10 +59,10 @@ async function initialBulkCreate() {
   // ? Insert log into log collection
   try {
     await Log.deleteMany();
-    const lastArticle = await Article.find({}).limit(1);
+    const lastArticle = await Article.findOne({}).limit(1);
     const log = new Log({
       triggeredAt: new Date().toISOString(),
-      lastArticleInserted: lastArticle[0],
+      lastArticleInserted: lastArticle,
     });
 
     await log.save();
