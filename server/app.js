@@ -5,6 +5,7 @@ const cron = require("node-cron");
 
 // ? Cron Job
 // TODO: Creat CRON to update database at 9 daily hours
+require("./jobs/updater");
 
 // ? Server setup
 require("dotenv").config();

@@ -20,7 +20,7 @@ async function initialBulkCreate() {
   // ? Get from first to last record
   const api_url = "https://api.spaceflightnewsapi.net/v3";
 
-  let count = 0;
+  let count = 100;
   let articles = [];
 
   console.log("Fetching total article count...");
@@ -33,8 +33,6 @@ async function initialBulkCreate() {
   // } catch (err) {
   //   throw new Error(`Error fetching article count - ${err}`);
   // }
-
-  count = 100;
 
   console.log("Querying remote articles api...");
 
@@ -61,9 +59,7 @@ async function initialBulkCreate() {
   // ? Insert log into log collection
   try {
     await Log.deleteMany();
-
     const lastArticle = await Article.find({}).limit(1);
-
     const log = new Log({
       triggeredAt: new Date().toISOString(),
       lastArticleInserted: lastArticle[0],
