@@ -1,8 +1,7 @@
 const Article = require("../models/Article");
 
 async function getAllArticles(req, res) {
-  const page = req.query.page;
-  const limit = req.query.limit;
+  const { page, limit, title } = req.query;
 
   if (!page || !limit) {
     res.status(400).json({
@@ -11,7 +10,13 @@ async function getAllArticles(req, res) {
     });
   }
 
-  Article.find()
+  Article.find(
+    title
+      ? {
+          title: { $regex: `.*${title}.*`, $options: "i" },
+        }
+      : {}
+  )
     .limit(limit)
     .skip(limit * page)
     .sort({ publishedAt: "asc" })
