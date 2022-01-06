@@ -8,7 +8,7 @@ Aplicação Fullstack (Vue + Node.js) baseada em dados do projeto [Space Flight 
 
 - **Linguagens:** Javascript, CSS, HTML5
 - **Frontend:** Vite, Vue 3
-- **Backend:** Node.js, Express
+- **Backend:** Node.js, Express, Mongoose, MongoDB
 
 ## Instruções
 
