@@ -1,3 +1,20 @@
-<template>App</template>
+<template>
+  <main>
+    <AppNavbar />
+  </main>
+</template>
 
-<style></style>
+<script>
+import AppNavbar from "./components/AppNavbar.vue";
+
+export default {
+  name: "App",
+  components: {
+    AppNavbar,
+  },
+};
+</script>
+
+<style lang="scss">
+@import "./assets/main.scss";
+</style>
