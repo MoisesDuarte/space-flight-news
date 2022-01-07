@@ -2,6 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require("cors");
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 require("dotenv").config();
@@ -36,6 +37,7 @@ require("./jobs/updater");
 
 // ? Server setup
 const app = express();
+app.use(cors());
 app.use(morgan("dev"));
 
 // ? Mongoose Connection
