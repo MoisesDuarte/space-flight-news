@@ -1,6 +1,10 @@
 <template>
   <main>
     <AppNavbar />
+    <div class="container has-text-centered is-size-3">
+      <h1>Space Flight News</h1>
+      <hr />
+    </div>
   </main>
 </template>
 
