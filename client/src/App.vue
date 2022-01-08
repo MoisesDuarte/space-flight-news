@@ -6,10 +6,22 @@
     />
 
     <div class="container has-text-centered">
-      <h1 class="py-6 is-size-3">Space Flight News</h1>
+      <section class="pt-6">
+        <img
+          src="@/assets/icons/circle-rocket.svg"
+          style="width: 148px"
+          alt=""
+        />
+        <h1 class="py-5 is-size-2">Space Flight News</h1>
+      </section>
+
       <hr />
 
-      <ArticleList v-show="articles.length > 0" :articles="articles" />
+      <ArticleList
+        v-show="articles.length > 0"
+        :articles="articles"
+        :loading="isLoading"
+      />
 
       <section>
         <button
@@ -42,7 +54,7 @@ export default {
       pagination: {
         title: "",
         page: 0,
-        totalPages: 10,
+        totalPages: 0,
         sort: "asc",
       },
       isLoading: false,

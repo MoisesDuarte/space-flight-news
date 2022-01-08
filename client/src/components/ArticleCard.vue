@@ -2,7 +2,7 @@
   <div class="columns has-text-left">
     <div class="column">
       <figure class="image is-3by2">
-        <img :src="information.imageUrl" />
+        <img style="border-radius: 10px" :src="information.imageUrl" />
       </figure>
     </div>
     <div class="column">
@@ -18,7 +18,7 @@
       <p class="has-text-weight-medium mb-2">
         {{ information.summary }}
       </p>
-      <a role="button" class="button is-primary" :href="information.url"
+      <a class="button is-primary" :href="information.url" target="__blank"
         >Ver mais</a
       >
     </div>

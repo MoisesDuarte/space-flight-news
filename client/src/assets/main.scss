@@ -1,3 +1,20 @@
+@charset "utf-8";
+
+// Font Import
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+// Set your brand colors
+$black: #1e2022;
+$blue: #302e53;
+$orange: #d07017;
+
+$text: $black;
+$primary: $blue;
+$link: $orange;
+
+// Bulma configuration
+$family-sans-serif: "Roboto Condensed", sans-serif;
+
 // Bulma Imports
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
@@ -5,6 +22,7 @@
 @import "../node_modules/bulma/sass/elements/container.sass";
 @import "../node_modules/bulma/sass/elements/title.sass";
 @import "../node_modules/bulma/sass/elements/tag.sass";
+@import "../node_modules/bulma/sass/elements/progress.sass";
 @import "../node_modules/bulma/sass/form/_all.sass";
 @import "../node_modules/bulma/sass/components/navbar.sass";
 @import "../node_modules/bulma/sass/layout/hero.sass";

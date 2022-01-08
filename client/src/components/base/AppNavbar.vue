@@ -10,12 +10,16 @@
                 v-model="searchString"
                 class="input"
                 type="text"
-                placeholder="Search"
                 @keydown.native.enter="onSearch"
               />
             </div>
             <div class="control">
-              <a role="button" class="button is-info" @click="onSearch"> L </a>
+              <a role="button" class="button is-link px-3" @click="onSearch">
+                <img
+                  src="@/assets/icons/magnifying-glass.svg"
+                  style="width: 18px"
+                />
+              </a>
             </div>
           </div>
 

@@ -9,6 +9,11 @@
           :class="{ 'is-flex-direction-row-reverse': index & 1 }"
           class="mb-6"
         />
+        <progress
+          v-if="loading"
+          class="progress is-large is-link"
+          max="100"
+        ></progress>
       </div>
     </div>
   </section>
@@ -23,6 +28,10 @@ export default {
     articles: {
       type: Array,
       default: [],
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {
