@@ -1,8 +1,7 @@
 import axios from "axios";
 
 class ApiResource {
-  // TODO: Set baseurl as .env variable
-  baseUrl = "http://localhost:3000";
+  baseUrl = import.meta.env.VITE_BACKEND_SERVER_HOST;
 
   /**
    * Fetch all articles
