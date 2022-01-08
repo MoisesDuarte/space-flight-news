@@ -58,12 +58,18 @@ const articleController = require("../controllers/ArticleController");
  *           items:
  *             oneOf:
  *               - $ref: "#/components/schemas/Article"
- *         page:
- *           type: integer
- *           example: 0
- *         pages:
- *           type: integer
- *           example: 0
+ *         filter:
+ *           type: object
+ *           properties:
+ *             title:
+ *               type: string
+ *               example: "string"
+ *             page:
+ *               type: integer
+ *               example: 0
+ *             totalPages:
+ *               type: integer
+ *               example: 0
  */
 
 // * API Routes

@@ -28,8 +28,11 @@ async function getAllArticles(req, res) {
       Article.countDocuments().exec(function (err, count) {
         res.status(200).json({
           articles,
-          page: parseInt(page),
-          pages: count / limit,
+          pagination: {
+            title: title ? title : "",
+            page: parseInt(page),
+            totalPages: count / limit,
+          },
         });
       });
     });
