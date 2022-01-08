@@ -40,6 +40,20 @@ class ApiResource {
       console.error("Error fetching article by id", err);
     }
   }
+
+  /**
+   * Delete article by id
+   * @param {id} id - the article id to delete
+   * @returns the deleted model count
+   */
+  async deleteArticle(id) {
+    try {
+      const response = await axios.delete(`${this.baseUrl}/articles/${id}`);
+      return response.data;
+    } catch (err) {
+      console.error("Error fetching article by id", err);
+    }
+  }
 }
 
 export default new ApiResource();

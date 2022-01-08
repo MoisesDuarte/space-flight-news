@@ -10,14 +10,14 @@ async function getAllArticles(req, res) {
     });
   }
 
+  const titleFilter = title
+    ? {
+        title: { $regex: `.*${title}.*`, $options: "i" },
+      }
+    : {};
+
   try {
-    Article.find(
-      title
-        ? {
-            title: { $regex: `.*${title}.*`, $options: "i" },
-          }
-        : {}
-    )
+    Article.find({ ...titleFilter })
       .limit(limit)
       .skip(limit * page)
       .sort({ publishedAt: sort ? sort : "asc" })
@@ -26,13 +26,13 @@ async function getAllArticles(req, res) {
           res.status(500).json(err);
         }
 
-        Article.countDocuments().exec(function (err, count) {
+        Article.countDocuments({ ...titleFilter }).exec(function (err, count) {
           res.status(200).json({
             articles,
             pagination: {
               title: title ? title : "",
               page: parseInt(page),
-              totalPages: count / limit,
+              totalPages: Math.round(count / limit),
             },
           });
         });
