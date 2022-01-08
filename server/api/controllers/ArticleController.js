@@ -66,17 +66,12 @@ async function addNewArticle(req, res) {
 }
 
 async function updateArticle(req, res) {
-  try {
-    const id = req.params.id;
-    let article = await Article.findOne({ _id: id });
+  const { id } = req.params;
 
-    Object.assign(article, req.body);
-
-    const newArticle = await article.save();
-    res.status(200).json({ data: newArticle });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  Article.findOneAndUpdate({ _id: id }, req.body, {}, (err, doc) => {
+    if (err) return res.status(500).json({ error: err });
+    return res.status(200).json({ data: doc });
+  });
 }
 
 async function deleteArticle(req, res) {

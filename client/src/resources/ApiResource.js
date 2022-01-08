@@ -23,7 +23,7 @@ class ApiResource {
       const response = await axios.get(`${this.baseUrl}/articles`, { params });
       return response.data;
     } catch (err) {
-      console.error("Error fetching articles", err);
+      throw err;
     }
   }
 
@@ -37,7 +37,7 @@ class ApiResource {
       const response = await axios.get(`${this.baseUrl}/articles/${id}`);
       return response.data;
     } catch (err) {
-      console.error("Error fetching article by id", err);
+      throw err;
     }
   }
 
@@ -51,7 +51,25 @@ class ApiResource {
       const response = await axios.post(`${this.baseUrl}/articles`, payload);
       return response.data;
     } catch (err) {
-      return err;
+      throw err;
+    }
+  }
+
+  /**
+   * Add new article
+   * @param {integer} id - the id to update
+   * @param {object} payload - the form data to send
+   * @returns the updated article object
+   */
+  async updateArticle(id, payload) {
+    try {
+      const response = await axios.put(
+        `${this.baseUrl}/articles/${id}`,
+        payload
+      );
+      return response.data;
+    } catch (err) {
+      throw err;
     }
   }
 
@@ -65,7 +83,7 @@ class ApiResource {
       const response = await axios.delete(`${this.baseUrl}/articles/${id}`);
       return response.data;
     } catch (err) {
-      console.error("Error fetching article by id", err);
+      throw err;
     }
   }
 }

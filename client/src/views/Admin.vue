@@ -2,8 +2,9 @@
   <AppModal v-if="isModalActive" @onClose="isModalActive = false">
     <template #title> Novo Artigo </template>
     <ArticleForm
+      :article="currentArticle"
       @onClose="isModalActive = false"
-      @onSubmit="createArticle($event)"
+      @onSubmit="isEditMode ? editArticle($event) : createArticle($event)"
     />
   </AppModal>
 
@@ -38,6 +39,7 @@
       :columns="columns"
       :articles="articles"
       @onDeleteArticle="deleteArticle($event)"
+      @onEditArticle="openEditModal($event)"
     />
 
     <AppPagination
@@ -70,7 +72,9 @@ export default {
       articles: [],
       pagination: {},
       searchString: "",
+      currentArticle: {},
       isModalActive: false,
+      isEditMode: false,
     };
   },
   methods: {
@@ -86,7 +90,7 @@ export default {
     createArticle(data) {
       ApiResource.addNewArticle(data)
         .then((res) => {
-          alert(JSON.stringify(res));
+          alert("Created Article:", JSON.stringify(res));
         })
         .catch((err) => {
           alert(err);
@@ -94,6 +98,32 @@ export default {
         .finally(() => {
           this.isModalActive = false;
         });
+    },
+    editArticle(data) {
+      ApiResource.updateArticle(data._id, data)
+        .then((res) => {
+          alert(`Update efetuado com sucesso!`);
+        })
+        .catch((err) => {
+          alert(err);
+        })
+        .finally(() => {
+          this.currentArticle = {};
+          this.isEditMode = false;
+          this.isModalActive = false;
+
+          const { page, title } = this.pagination;
+          this.fetchArticles(page, 10, title);
+        });
+    },
+    openEditModal(article) {
+      this.currentArticle = article;
+
+      const formattedDate = this.currentArticle.publishedAt.substring(0, 19);
+      this.currentArticle.publishedAt = formattedDate;
+
+      this.isEditMode = true;
+      this.isModalActive = true;
     },
     deleteArticle(id) {
       ApiResource.deleteArticle(id).then(() => {

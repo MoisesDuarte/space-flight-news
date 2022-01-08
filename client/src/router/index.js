@@ -1,4 +1,4 @@
-import { createWebHashHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 import Home from "@/views/Home.vue";
 
@@ -11,12 +11,13 @@ const routes = [
   {
     path: "/admin",
     name: "Admin",
-    component: () => import("@/views/Admin.vue"),
+    component: () =>
+      import(/* webpackChunkName: "admin" */ "../views/Admin.vue"),
   },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 

@@ -19,7 +19,12 @@
             >
               Remover
             </button>
-            <button class="button is-info is-small">Editar</button>
+            <button
+              class="button is-info is-small"
+              @click="onEditArticle(article)"
+            >
+              Editar
+            </button>
           </td>
         </tr>
       </tbody>
@@ -43,6 +48,9 @@ export default {
   methods: {
     onDeleteArticle(id) {
       this.$emit("onDeleteArticle", id);
+    },
+    onEditArticle(article) {
+      this.$emit("onEditArticle", article);
     },
   },
 };

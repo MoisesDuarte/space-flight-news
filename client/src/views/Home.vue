@@ -75,6 +75,7 @@ export default {
     },
     sortByTitle(title) {
       const { sort } = this.pagination;
+      this.articles = [];
       this.fetchArticles(0, 10, title, sort);
     },
     sortByPublished(sort) {

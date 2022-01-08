@@ -11,7 +11,7 @@
         />
         <progress
           v-if="loading"
-          class="progress is-large is-link"
+          class="progress is-large is-primary"
           max="100"
         ></progress>
       </div>

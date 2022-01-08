@@ -4,7 +4,7 @@
       <label class="label">Featured</label>
       <div class="control">
         <div class="select">
-          <select v-model="featured">
+          <select v-model="article.featured">
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
@@ -16,7 +16,7 @@
       <label class="label">Title</label>
       <div class="control">
         <input
-          v-model="title"
+          v-model="article.title"
           class="input"
           type="text"
           name="title"
@@ -28,7 +28,13 @@
     <div class="field">
       <label class="label">Url</label>
       <div class="control">
-        <input v-model="url" class="input" type="text" name="url" required />
+        <input
+          v-model="article.url"
+          class="input"
+          type="text"
+          name="url"
+          required
+        />
       </div>
     </div>
 
@@ -36,7 +42,7 @@
       <label class="label">Image Url</label>
       <div class="control">
         <input
-          v-model="imageUrl"
+          v-model="article.imageUrl"
           class="input"
           type="text"
           name="imageUrl"
@@ -49,7 +55,7 @@
       <label class="label">News Site</label>
       <div class="control">
         <input
-          v-model="newsSite"
+          v-model="article.newsSite"
           class="input"
           type="text"
           name="newsSite"
@@ -62,7 +68,7 @@
       <label class="label">Summary</label>
       <div class="control">
         <textarea
-          v-model="summary"
+          v-model="article.summary"
           class="textarea"
           name="summary"
           required
@@ -74,9 +80,9 @@
       <label class="label">Published at</label>
       <div class="control">
         <input
-          v-model="publishedAt"
+          v-model="article.publishedAt"
           class="input"
-          type="date"
+          type="datetime-local"
           name="publishedAt"
           required
         />
@@ -93,30 +99,15 @@
 <script>
 export default {
   name: "ArticleForm",
-  data() {
-    return {
-      featured: false,
-      title: null,
-      url: null,
-      imageUrl: null,
-      newsSite: null,
-      summary: null,
-      publishedAt: null,
-    };
+  props: {
+    article: {
+      type: Object,
+      default: {},
+    },
   },
   methods: {
     onSubmit() {
-      const data = {
-        featured: this.featured,
-        title: this.title,
-        url: this.url,
-        imageUrl: this.imageUrl,
-        newsSite: this.newsSite,
-        summary: this.summary,
-        publishedAt: new Date(this.publishedAt).toISOString(),
-      };
-
-      this.$emit("onSubmit", data);
+      this.$emit("onSubmit", this.article);
     },
     onCancel() {
       this.$emit("onClose");
