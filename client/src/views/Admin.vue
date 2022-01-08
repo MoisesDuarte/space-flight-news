@@ -24,57 +24,32 @@
       </div>
     </section>
 
-    <div class="table-container">
-      <table class="table is-bordered is-fullwidth is-narrow is-striped">
-        <thead>
-          <tr>
-            <th v-for="col in columns">{{ col }}</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="article in articles" :key="article.id">
-            <td v-for="col in columns" style="white-space: nowrap">
-              {{ article[col] }}
-            </td>
-            <td style="white-space: nowrap">
-              <button
-                class="button is-danger is-small mr-2"
-                @click="deleteArticle(article._id)"
-              >
-                Remover
-              </button>
-              <button class="button is-info is-small">Editar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ArticleTable
+      :columns="columns"
+      :articles="articles"
+      @onDeleteArticle="deleteArticle($event)"
+    />
 
-    <nav
-      class="pagination is-centered"
-      role="navigation"
-      aria-label="pagination"
-    >
-      <ul class="pagination-list">
-        <li v-for="(page, index) in pagination.totalPages">
-          <a
-            class="pagination-link"
-            :class="{ 'is-current': pagination.page == index }"
-            @click="goToPage(index)"
-            >{{ index + 1 }}</a
-          >
-        </li>
-      </ul>
-    </nav>
+    <AppPagination
+      :current-page="pagination.page"
+      :total-pages="pagination.totalPages"
+      @onPageSelect="goToPage($event)"
+    />
   </div>
 </template>
 
 <script>
+import ArticleTable from "@/components/ArticleTable.vue";
+import AppPagination from "@/components/base/AppPagination.vue";
+
 import ApiResource from "@/resources/ApiResource";
 
 export default {
   name: "Admin",
+  components: {
+    ArticleTable,
+    AppPagination,
+  },
   data() {
     return {
       columns: [],

@@ -21,12 +21,12 @@ async function getAllArticles(req, res) {
       .limit(limit)
       .skip(limit * page)
       .sort({ publishedAt: sort ? sort : "asc" })
-      .exec(function (err, articles) {
+      .exec((err, articles) => {
         if (err) {
           res.status(500).json(err);
         }
 
-        Article.countDocuments({ ...titleFilter }).exec(function (err, count) {
+        Article.countDocuments({ ...titleFilter }).exec((err, count) => {
           res.status(200).json({
             articles,
             pagination: {
