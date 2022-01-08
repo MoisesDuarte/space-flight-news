@@ -15,6 +15,15 @@ $link: $orange;
 // Bulma configuration
 $family-sans-serif: "Roboto Condensed", sans-serif;
 
+// Transitions
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 // Bulma Imports
 @import "../node_modules/bulma/sass/utilities/_all.sass";
 @import "../node_modules/bulma/sass/base/_all.sass";
@@ -24,6 +33,7 @@ $family-sans-serif: "Roboto Condensed", sans-serif;
 @import "../node_modules/bulma/sass/elements/tag.sass";
 @import "../node_modules/bulma/sass/elements/progress.sass";
 @import "../node_modules/bulma/sass/elements/table.sass";
+@import "../node_modules/bulma/sass/elements/notification.sass";
 @import "../node_modules/bulma/sass/form/_all.sass";
 @import "../node_modules/bulma/sass/components/navbar.sass";
 @import "../node_modules/bulma/sass/components/pagination.sass";
