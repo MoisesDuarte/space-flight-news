@@ -30,60 +30,39 @@ Aplicação Fullstack (Vue + Node.js) baseada em dados do projeto [Space Flight 
 
 ### Cliente
 
-#### Instalar dependências
+```sh
+# Copiar o arquivo .env.template (root da pasta client) como .env e definir a mesma porta do server
+VITE_BACKEND_SERVER_HOST=3000
 
-```
-npm install
-```
-
-#### Rodar servidor de desenvolvimento
-
-```
-npm run dev
+# Rodar os seguintes comando
+npm install     # Instalar dependências
+npm run dev     # Rodar servidor de desenvolvimento
 ```
 
 ### Servidor
 
-#### Copiar o arquivo .env.template (root da pasta server) como .env e definir porta a ser utilizada
-
-```
+```sh
+# Copiar o arquivo .env.template (root da pasta server) como .env e definir porta a ser utilizada
 PORT=3000
-```
 
-#### Rodar script para popular database
-
-```
-npm run populate
-```
-
-#### Instalar dependências
-
-```
-npm install
-```
-
-#### Rodar servidor de desenvolvimento
-
-```
-npm run dev
+# Rodar os seguintes comando
+npm run populate  # Rodar script para popular database
+npm install       # Instalar dependências
+npm run dev       # Rodar servidor de desenvolvimento
 ```
 
 ## Scripts
 
-### Cliente
+```sh
+npm run dev       # Iniciar servidor de desenvolvimento
+npm run build     # Compilar projeto para produção
+npm run preview   # Iniciar preview de build de produção
+```
 
-| Comando         | Descrição                            |
-| --------------- | ------------------------------------ |
-| npm run dev     | Iniciar servidor de desenvolvimento  |
-| npm run build   | Compilar projeto para produção       |
-| npm run preview | Iniciar preview de build de produção |
-
-### Servidor
-
-| Comando          | Descrição                           |
-| ---------------- | ----------------------------------- |
-| npm run dev      | Iniciar servidor de desenvolvimento |
-| npm run test     | Rodar testes unitários de api       |
-| npm run populate | Popular banco de dados              |
+```sh
+npm run dev       # Iniciar servidor de desenvolvimento
+npm run test      # Rodar testes unitários de api
+npm run populate  # Popular banco de dados
+```
 
 > This is a challenge by [Coodesh](https://coodesh.com)
