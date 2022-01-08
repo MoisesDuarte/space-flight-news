@@ -1,8 +1,18 @@
 <template>
+  <AppModal v-if="isModalActive" @onClose="isModalActive = false">
+    <template #title> Novo Artigo </template>
+    <ArticleForm
+      @onClose="isModalActive = false"
+      @onSubmit="createArticle($event)"
+    />
+  </AppModal>
+
   <div class="container py-6">
     <section class="is-flex mb-4 is-justify-content-space-between">
       <div class="buttons">
-        <button class="button">Adicionar</button>
+        <button class="button" @click="isModalActive = !isModalActive">
+          Adicionar
+        </button>
       </div>
       <div class="field has-addons mb-0 mr-2">
         <div class="control">
@@ -39,6 +49,8 @@
 </template>
 
 <script>
+import AppModal from "@/components/base/AppModal.vue";
+import ArticleForm from "@/components/ArticleForm.vue";
 import ArticleTable from "@/components/ArticleTable.vue";
 import AppPagination from "@/components/base/AppPagination.vue";
 
@@ -47,6 +59,8 @@ import ApiResource from "@/resources/ApiResource";
 export default {
   name: "Admin",
   components: {
+    AppModal,
+    ArticleForm,
     ArticleTable,
     AppPagination,
   },
@@ -56,6 +70,7 @@ export default {
       articles: [],
       pagination: {},
       searchString: "",
+      isModalActive: false,
     };
   },
   methods: {
@@ -67,6 +82,18 @@ export default {
           this.columns = Object.keys(articles[0]);
         }
       );
+    },
+    createArticle(data) {
+      ApiResource.addNewArticle(data)
+        .then((res) => {
+          alert(JSON.stringify(res));
+        })
+        .catch((err) => {
+          alert(err);
+        })
+        .finally(() => {
+          this.isModalActive = false;
+        });
     },
     deleteArticle(id) {
       ApiResource.deleteArticle(id).then(() => {

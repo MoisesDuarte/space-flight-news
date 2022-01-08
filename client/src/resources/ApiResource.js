@@ -29,7 +29,7 @@ class ApiResource {
 
   /**
    * Fetch article information by id
-   * @param {id} id - the article id to fetch
+   * @param {integer} id - the article id to fetch
    * @returns an article object
    */
   async getArticleById(id) {
@@ -42,8 +42,22 @@ class ApiResource {
   }
 
   /**
+   * Add new article
+   * @param {object} payload - the form data to send
+   * @returns the created article object
+   */
+  async addNewArticle(payload) {
+    try {
+      const response = await axios.post(`${this.baseUrl}/articles`, payload);
+      return response.data;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  /**
    * Delete article by id
-   * @param {id} id - the article id to delete
+   * @param {integer} id - the article id to delete
    * @returns the deleted model count
    */
   async deleteArticle(id) {

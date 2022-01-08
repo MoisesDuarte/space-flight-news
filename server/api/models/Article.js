@@ -5,7 +5,7 @@ const Article = model(
   Schema({
     id: {
       type: Number,
-      required: true,
+      required: false,
     },
     featured: {
       type: Boolean,
