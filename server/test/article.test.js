@@ -22,8 +22,7 @@ describe("Articles", () => {
           res.should.have.status(200);
           res.body.should.be.a("object");
           res.body.should.have.property("articles").which.is.an("array");
-          res.body.should.have.property("page").which.is.an("number");
-          res.body.should.have.property("pages").which.is.an("number");
+          res.body.should.have.property("pagination").which.is.an("object");
 
           done();
         });

@@ -1,6 +1,10 @@
 <template>
   <main>
-    <AppNavbar @onSearch="sortByTitle($event)" />
+    <AppNavbar
+      @onSearch="sortByTitle($event)"
+      @onSort="sortByPublished($event)"
+    />
+
     <div class="container has-text-centered">
       <h1 class="py-6 is-size-3">Space Flight News</h1>
       <hr />
@@ -39,15 +43,16 @@ export default {
         title: "",
         page: 0,
         totalPages: 10,
+        sort: "asc",
       },
       isLoading: false,
     };
   },
   methods: {
-    fetchArticles(page, limit, title = null, expand = false) {
+    fetchArticles(page, limit, title = null, sort = null, expand = false) {
       this.isLoading = true;
 
-      ApiResource.getArticles(page, limit, title)
+      ApiResource.getArticles(page, limit, title, sort)
         .then(({ articles, pagination }) => {
           this.articles = expand ? [...this.articles, ...articles] : articles;
           this.pagination = pagination;
@@ -57,11 +62,16 @@ export default {
         });
     },
     sortByTitle(title) {
-      this.fetchArticles(0, 10, title);
+      const { sort } = this.pagination;
+      this.fetchArticles(0, 10, title, sort);
+    },
+    sortByPublished(sort) {
+      const { title } = this.pagination;
+      this.fetchArticles(0, 10, title, sort);
     },
     loadMoreArticles() {
-      const { page, title } = this.pagination;
-      this.fetchArticles(page + 1, 10, title, true);
+      const { page, title, sort } = this.pagination;
+      this.fetchArticles(page + 1, 10, title, sort, true);
     },
   },
   created() {

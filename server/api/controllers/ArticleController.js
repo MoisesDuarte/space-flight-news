@@ -1,7 +1,7 @@
 const Article = require("../models/Article");
 
 async function getAllArticles(req, res) {
-  const { page, limit, title } = req.query;
+  const { page, limit, title, sort } = req.query;
 
   if (!page || !limit) {
     res.status(400).json({
@@ -19,7 +19,7 @@ async function getAllArticles(req, res) {
   )
     .limit(limit)
     .skip(limit * page)
-    .sort({ publishedAt: "asc" })
+    .sort({ publishedAt: sort ? sort : "asc" })
     .exec(function (err, articles) {
       if (err) {
         res.status(500).json({ message: err });

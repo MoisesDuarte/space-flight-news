@@ -7,7 +7,7 @@
           <div class="field has-addons mb-0 mr-2">
             <div class="control">
               <input
-                v-model="searchInput"
+                v-model="searchString"
                 class="input"
                 type="text"
                 placeholder="Search"
@@ -20,9 +20,9 @@
           </div>
 
           <div class="select">
-            <select>
-              <option>Mais antigas</option>
-              <option>Mais novas</option>
+            <select v-model="sortValue" @change="onSort()">
+              <option value="desc">Mais antigas</option>
+              <option value="asc">Mais novas</option>
             </select>
           </div>
         </div>
@@ -37,11 +37,15 @@ export default {
   data() {
     return {
       searchString: "",
+      sortValue: "asc",
     };
   },
   methods: {
     onSearch() {
-      this.$emit("onSearch", this.searchInput);
+      this.$emit("onSearch", this.searchString);
+    },
+    onSort() {
+      this.$emit("onSort", this.sortValue);
     },
   },
 };

@@ -8,13 +8,15 @@ class ApiResource {
    * @param {integer} page - Page index to get
    * @param {integer} limit - Number of articles to fetch
    * @param {string} title - A string to filter title by (optional)
+   * @param {string} sort - Sort order for publishedAt (optional)
    * @returns an object with an array of articles and page information
    */
-  async getArticles(page, limit, title = null) {
+  async getArticles(page, limit, title = null, sort = null) {
     const params = {
       title,
       page,
       limit,
+      sort,
     };
 
     try {

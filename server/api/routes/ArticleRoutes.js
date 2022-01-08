@@ -98,6 +98,12 @@ const articleController = require("../controllers/ArticleController");
  *           type: string
  *         required: false
  *         description: Filter search by title
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *         required: false
+ *         description: Sorting order for articles
  *     responses:
  *       200:
  *         description: A list of articles.
