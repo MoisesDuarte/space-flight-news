@@ -43,26 +43,21 @@ async function getAllArticles(req, res) {
 }
 
 async function getArticleById(req, res) {
-  try {
-    const id = req.params.id;
-    const result = await Article.findById(id);
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  const { id } = req.params;
+
+  Article.findById(id).exec((err, doc) => {
+    if (err) return res.status(500).json({ error: err });
+    return res.status(200).json({ data: doc });
+  });
 }
 
 async function addNewArticle(req, res) {
-  try {
-    const article = new Article({
-      ...req.body,
-    });
+  const article = new Article({ ...req.body });
 
-    const newArticle = await article.save();
-    res.status(200).json({ data: newArticle });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  article.save((err, doc) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json({ data: doc });
+  });
 }
 
 async function updateArticle(req, res) {
@@ -75,13 +70,12 @@ async function updateArticle(req, res) {
 }
 
 async function deleteArticle(req, res) {
-  try {
-    const id = req.params.id;
-    const result = await Article.remove({ _id: id });
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  const { id } = req.params;
+
+  Article.remove({ _id: id }).exec((err, count) => {
+    if (err) return res.status(500).json({ error: err });
+    return res.status(200).json(count);
+  });
 }
 
 module.exports = {
