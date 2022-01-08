@@ -3,6 +3,7 @@ const chaiHttp = require("chai-http");
 const app = require("../app");
 
 const Article = require("../api/models/Article");
+const { articleKeys, dummyArticle } = require("./_testUtils");
 
 const should = chai.should();
 
@@ -21,8 +22,7 @@ describe("Articles", () => {
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a("object");
-          res.body.should.have.property("articles").which.is.an("array");
-          res.body.should.have.property("pagination").which.is.an("object");
+          res.body.should.have.keys("articles", "pagination");
 
           done();
         });
@@ -30,16 +30,76 @@ describe("Articles", () => {
   });
 
   describe("/GET/:id Article", () => {
-    it("it should GET by id an article", async () => {
-      // ? Fetch random article id for testing
-      const { _id } = await Article.findOne({}).limit(1);
+    it("it should GET by id an article", (done) => {
+      // ? Fetch random article for testing
+      Article.findOne({})
+        .limit(1)
+        .exec((err, result) => {
+          chai
+            .request(app)
+            .get(`/articles/${result._id}`)
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.be.a("object");
+              res.body.should.have.keys(articleKeys);
+              done();
+            });
+        });
+    });
+  });
 
+  describe("/POST/ Article", () => {
+    it("it should create a new article and return the created article", (done) => {
       chai
         .request(app)
-        .get(`/articles/${_id}`)
+        .post("/articles")
+        .type("json")
+        .send(dummyArticle)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a("object");
+          res.body.should.have.property("data");
+          res.body.data.should.have.keys(articleKeys);
+          done();
+        });
+    });
+  });
+
+  describe("/PUT/:id Article", () => {
+    it("it should update a article and return the updated article", (done) => {
+      Article.findOne({})
+        .limit(1)
+        .exec((err, result) => {
+          chai
+            .request(app)
+            .put(`/articles/${result._id}`)
+            .type("json")
+            .send(dummyArticle)
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.be.a("object");
+              res.body.should.have.property("data");
+              res.body.data.should.have.keys(articleKeys);
+              done();
+            });
+        });
+    });
+  });
+
+  describe("/DELETE/:id Article", () => {
+    it("it should delete a article by id and return the deleted model count", (done) => {
+      Article.findOne({})
+        .limit(1)
+        .exec((err, result) => {
+          chai
+            .request(app)
+            .delete(`/articles/${result._id}`)
+            .end((err, res) => {
+              res.should.have.status(200);
+              res.body.should.be.a("object");
+              res.body.should.have.keys("deletedCount");
+              done();
+            });
         });
     });
   });

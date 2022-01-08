@@ -53,11 +53,15 @@ npm run dev       # Rodar servidor de desenvolvimento
 
 ## Scripts
 
+### Cliente
+
 ```sh
 npm run dev       # Iniciar servidor de desenvolvimento
 npm run build     # Compilar projeto para produção
 npm run preview   # Iniciar preview de build de produção
 ```
+
+### Servidor
 
 ```sh
 npm run dev       # Iniciar servidor de desenvolvimento
