@@ -7,7 +7,10 @@
 
     <div class="container has-text-centered">
       <section class="pt-6">
-        <fa-icon :icon="['fas', 'rocket']" size="6x"></fa-icon>
+        <fa-layers class="fa-8x">
+          <fa-icon :icon="['far', 'circle']"></fa-icon>
+          <fa-icon :icon="['fas', 'rocket']" transform="shrink-9"></fa-icon>
+        </fa-layers>
         <h1 class="py-5 is-size-2">Space Flight News</h1>
       </section>
 

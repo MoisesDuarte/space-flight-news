@@ -11,7 +11,7 @@
       </h2>
       <div class="is-flex is-justify-content-space-between mb-1">
         <time>{{ formatISODate(information.publishedAt) }}</time>
-        <span class="tag is-dark">
+        <span class="tag is-link">
           {{ information.newsSite }}
         </span>
       </div>
