@@ -16,11 +16,13 @@
 
       <hr />
 
-      <ArticleList
-        v-show="articles.length > 0"
-        :articles="articles"
-        :loading="isLoading"
-      />
+      <transition name="fade">
+        <ArticleList
+          v-show="articles.length > 0"
+          :articles="articles"
+          :loading="isLoading"
+        />
+      </transition>
 
       <section>
         <button
@@ -79,6 +81,7 @@ export default {
     },
     sortByPublished(sort) {
       const { title } = this.pagination;
+      this.articles = [];
       this.fetchArticles(0, 10, title, sort);
     },
     loadMoreArticles() {
