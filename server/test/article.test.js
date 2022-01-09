@@ -41,7 +41,8 @@ describe("Articles", () => {
             .end((err, res) => {
               res.should.have.status(200);
               res.body.should.be.a("object");
-              res.body.should.have.keys(articleKeys);
+              res.body.should.have.property("data");
+              res.body.data.should.have.keys(articleKeys);
               done();
             });
         });
