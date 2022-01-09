@@ -7,7 +7,7 @@
           <div class="field has-addons mb-0 mr-2">
             <div class="control">
               <input
-                v-model="searchString"
+                v-model="pagination.title"
                 class="input"
                 type="text"
                 @keydown.native.enter="onSearch"
@@ -21,7 +21,7 @@
           </div>
 
           <div class="select">
-            <select v-model="sortValue" @change="onSort()">
+            <select v-model="pagination.sort" @change="onSort()">
               <option value="asc">Mais antigas</option>
               <option value="desc">Mais novas</option>
             </select>
@@ -35,19 +35,22 @@
 <script>
 export default {
   name: "AppNavbar",
-  data() {
-    return {
-      searchString: "",
-      sortValue: "desc",
-    };
+  props: {
+    pagination: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
     onSearch() {
-      this.$emit("onSearch", this.searchString);
+      this.$emit("onSearch", this.pagination.title);
     },
     onSort() {
-      this.$emit("onSort", this.sortValue);
+      this.$emit("onSort", this.pagination.sort);
     },
+  },
+  created() {
+    console.info(this.pagination);
   },
 };
 </script>

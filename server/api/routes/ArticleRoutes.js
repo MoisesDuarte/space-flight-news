@@ -69,6 +69,9 @@ const articleController = require("../controllers/ArticleController");
  *             totalPages:
  *               type: integer
  *               example: 0
+ *             sort:
+ *               type: string
+ *               example: "string"
  */
 
 // * API Routes

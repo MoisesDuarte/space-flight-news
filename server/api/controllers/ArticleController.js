@@ -32,7 +32,8 @@ async function getAllArticles(req, res) {
             pagination: {
               title: title ? title : "",
               page: parseInt(page),
-              totalPages: Math.round(count / limit),
+              totalPages: Math.ceil(count / limit),
+              sort: sort ? sort : "asc",
             },
           });
         });

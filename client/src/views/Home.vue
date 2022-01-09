@@ -3,6 +3,7 @@
     <AppNavbar
       @onSearch="sortByTitle($event)"
       @onSort="sortByPublished($event)"
+      :pagination="pagination"
     />
 
     <div class="container has-text-centered">
