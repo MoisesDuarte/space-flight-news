@@ -42,8 +42,9 @@ npm run dev     # Rodar servidor de desenvolvimento
 ### Servidor
 
 ```sh
-# Copiar o arquivo .env.template (root da pasta server) como .env e definir porta a ser utilizada
+# Copiar o arquivo .env.template (root da pasta server) como .env e definir porta a ser utilizada e o string do banco em mongo
 PORT=3000
+MONGO_DB_STRING=
 
 # Rodar os seguintes comando
 npm run populate  # Rodar script para popular database
