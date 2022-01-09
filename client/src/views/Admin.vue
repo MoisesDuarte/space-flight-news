@@ -21,7 +21,9 @@
 
     <section class="is-flex mb-4 is-justify-content-space-between">
       <div class="buttons">
-        <button class="button" @click="onOpenAddModal">Adicionar</button>
+        <button class="button" @click="onOpenAddModal">
+          <fa-icon class="mr-2" icon="plus-circle"></fa-icon> Adicionar
+        </button>
       </div>
       <div class="field has-addons mb-0 mr-2">
         <div class="control">
@@ -34,10 +36,7 @@
         </div>
         <div class="control">
           <a role="button" class="button is-link" @click="onSearch">
-            <img
-              src="@/assets/icons/magnifying-glass.svg"
-              style="width: 18px"
-            />
+            <fa-icon :icon="['fas', 'search']"></fa-icon>
           </a>
         </div>
       </div>

@@ -7,11 +7,7 @@
 
     <div class="container has-text-centered">
       <section class="pt-6">
-        <img
-          src="@/assets/icons/circle-rocket.svg"
-          style="width: 148px"
-          alt=""
-        />
+        <fa-icon :icon="['fas', 'rocket']" size="6x"></fa-icon>
         <h1 class="py-5 is-size-2">Space Flight News</h1>
       </section>
 

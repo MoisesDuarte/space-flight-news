@@ -17,13 +17,13 @@
               class="button is-danger is-small mr-2"
               @click="onDeleteArticle(article._id)"
             >
-              Remover
+              <fa-icon :icon="['fas', 'eraser']"></fa-icon>
             </button>
             <button
               class="button is-info is-small"
               @click="onEditArticle(article)"
             >
-              Editar
+              <fa-icon :icon="['fas', 'pen']"></fa-icon>
             </button>
           </td>
         </tr>

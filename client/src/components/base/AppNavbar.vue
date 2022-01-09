@@ -15,10 +15,7 @@
             </div>
             <div class="control">
               <a role="button" class="button is-link px-3" @click="onSearch">
-                <img
-                  src="@/assets/icons/magnifying-glass.svg"
-                  style="width: 18px"
-                />
+                <fa-icon :icon="['fas', 'search']"></fa-icon>
               </a>
             </div>
           </div>
