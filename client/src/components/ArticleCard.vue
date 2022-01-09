@@ -37,7 +37,7 @@ export default {
   methods: {
     formatISODate(date) {
       const _date = new Date(date);
-      return `${_date.getDate()}/${_date.getMonth()}/${_date.getFullYear()}`;
+      return `${_date.toLocaleDateString()}`;
     },
   },
 };
