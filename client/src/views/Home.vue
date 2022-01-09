@@ -54,7 +54,7 @@ export default {
         title: "",
         page: 0,
         totalPages: 0,
-        sort: "asc",
+        sort: "desc",
       },
       isLoading: false,
     };
@@ -87,7 +87,7 @@ export default {
     },
   },
   created() {
-    this.fetchArticles(0, 10);
+    this.fetchArticles(0, 10, "", "desc");
   },
 };
 </script>

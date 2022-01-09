@@ -175,7 +175,7 @@ export default {
     },
   },
   created() {
-    this.fetchArticles(0, 10);
+    this.fetchArticles(0, 10, "", "desc");
   },
 };
 </script>
