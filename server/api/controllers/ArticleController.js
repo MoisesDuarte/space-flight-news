@@ -72,7 +72,7 @@ async function updateArticle(req, res) {
 async function deleteArticle(req, res) {
   const { id } = req.params;
 
-  Article.remove({ _id: id }).exec((err, count) => {
+  Article.deleteOne({ _id: id }).exec((err, count) => {
     if (err) return res.status(500).json({ error: err });
     return res.status(200).json(count);
   });
