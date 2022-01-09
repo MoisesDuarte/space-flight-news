@@ -92,3 +92,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@media (max-width: 768px) {
+  .container {
+    padding: 1.25rem;
+  }
+}
+</style>

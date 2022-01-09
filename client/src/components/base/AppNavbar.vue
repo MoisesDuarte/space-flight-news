@@ -25,8 +25,8 @@
 
           <div class="select">
             <select v-model="sortValue" @change="onSort()">
-              <option value="desc">Mais antigas</option>
-              <option value="asc">Mais novas</option>
+              <option value="asc">Mais antigas</option>
+              <option value="desc">Mais novas</option>
             </select>
           </div>
         </div>

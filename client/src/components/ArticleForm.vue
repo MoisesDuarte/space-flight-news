@@ -82,7 +82,7 @@
         <input
           v-model="article.publishedAt"
           class="input"
-          type="datetime-local"
+          type="text"
           name="publishedAt"
           required
         />

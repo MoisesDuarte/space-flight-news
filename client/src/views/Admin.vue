@@ -3,7 +3,7 @@
     <template #title> Novo Artigo </template>
     <ArticleForm
       :article="currentArticle"
-      @onClose="isModalActive = false"
+      @onClose="onModalClose"
       @onSubmit="isEditMode ? editArticle($event) : createArticle($event)"
     />
   </AppModal>
@@ -21,9 +21,7 @@
 
     <section class="is-flex mb-4 is-justify-content-space-between">
       <div class="buttons">
-        <button class="button" @click="isModalActive = !isModalActive">
-          Adicionar
-        </button>
+        <button class="button" @click="onOpenAddModal">Adicionar</button>
       </div>
       <div class="field has-addons mb-0 mr-2">
         <div class="control">
@@ -48,8 +46,8 @@
     <ArticleTable
       :columns="columns"
       :articles="articles"
-      @onDeleteArticle="deleteArticle($event)"
-      @onEditArticle="openEditModal($event)"
+      @onDeleteArticle="removeArticle($event)"
+      @onEditArticle="onOpenEditModal($event)"
     />
 
     <AppPagination
@@ -90,8 +88,8 @@ export default {
     };
   },
   methods: {
-    fetchArticles(page, limit, title = null, sort = null) {
-      ApiResource.getArticles(page, limit, title, sort).then(
+    fetchArticles(page, limit, title = null) {
+      ApiResource.getArticles(page, limit, title, "desc").then(
         ({ articles, pagination }) => {
           this.articles = articles;
           this.pagination = pagination;
@@ -106,6 +104,7 @@ export default {
             "Novo artigo cadastrado com sucesso!",
             "is-success"
           );
+          this.fetchArticles(0, 10);
         })
         .catch(() => {
           this.triggerNotification("Erro ao cadastrar artigo!", "is-danger");
@@ -131,7 +130,7 @@ export default {
           this.fetchArticles(page, 10, title);
         });
     },
-    deleteArticle(id) {
+    removeArticle(id) {
       ApiResource.deleteArticle(id)
         .then(() => {
           this.fetchArticles(0, 10);
@@ -141,18 +140,25 @@ export default {
           );
         })
         .catch((err) => {
-          console.info(err);
           this.triggerNotification("Erro ao remover artigo!", "is-danger");
         });
     },
-    openEditModal(article) {
+    onOpenAddModal() {
+      this.currentArticle = {
+        publishedAt: new Date().toISOString(),
+      };
+
+      this.isModalActive = true;
+    },
+    onOpenEditModal(article) {
       this.currentArticle = article;
-
-      const formattedDate = this.currentArticle.publishedAt.substring(0, 19);
-      this.currentArticle.publishedAt = formattedDate;
-
       this.isEditMode = true;
       this.isModalActive = true;
+    },
+    onModalClose() {
+      this.isModalActive = false;
+      this.isEditMode = false;
+      this.currentArticle = {};
     },
     onSearch() {
       this.fetchArticles(0, 10, this.searchString);
