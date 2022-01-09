@@ -5,9 +5,6 @@ const Article = require("../api/models/Article");
 const Log = require("../api/models/Log");
 
 async function updateDatabase() {
-  // TODO: Take care of redundancy
-  // TODO: Log script processing
-
   const api_url = "https://api.spaceflightnewsapi.net/v3";
   let limit = 0;
   let articles = [];
@@ -16,7 +13,6 @@ async function updateDatabase() {
   const lastLog = await Log.find().limit(1);
   const { id } = lastLog[0].lastArticleInserted;
 
-  // TODO: Move to utils, common fetch
   try {
     const res = await fetch(`${api_url}/articles/count`);
     limit = await res.json();
