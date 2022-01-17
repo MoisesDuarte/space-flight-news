@@ -16,6 +16,7 @@ Aplicação Fullstack (Vue + Node.js) baseada em dados do projeto [Space Flight 
 - Vue 3
 - Axios
 - Bulma
+- Font Awesome
 - Sass
 
 #### **Backend**
@@ -24,7 +25,9 @@ Aplicação Fullstack (Vue + Node.js) baseada em dados do projeto [Space Flight 
 - Express
 - Mongoose
 - MongoDB
-- Swagger
+- Swagger (JSDoc + UI Express)
+- Mocha + Chai
+- Node Cron
 
 ## Instruções
 
