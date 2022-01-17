@@ -70,8 +70,4 @@ npm run test      # Rodar testes unitários de api
 npm run populate  # Popular banco de dados
 ```
 
-### Apresentação
-
-https://www.loom.com/embed/6a5073be05604f76a8f46af64e798c7d
-
 > This is a challenge by [Coodesh](https://coodesh.com)
