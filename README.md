@@ -72,5 +72,3 @@ npm run dev       # Iniciar servidor de desenvolvimento
 npm run test      # Rodar testes unitários de api
 npm run populate  # Popular banco de dados
 ```
-
-> This is a challenge by [Coodesh](https://coodesh.com)
